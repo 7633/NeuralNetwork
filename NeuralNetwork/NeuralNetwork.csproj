@@ -45,6 +45,7 @@
     <Compile Include="ExternalEnvironmentNeural.cs" />
     <Compile Include="INeural.cs" />
     <Compile Include="EntryLevelNeural.cs" />
+    <Compile Include="NeuralFabric.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

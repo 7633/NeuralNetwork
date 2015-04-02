@@ -8,7 +8,7 @@ namespace NeuralNetwork
 {
     abstract class INeural
     {
-        public abstract float Enter { get; set; }
-        public abstract float Exit { get; set; }
+        public abstract double Enter { get; set; }
+        public abstract double Exit { get; set; }
     }
 }

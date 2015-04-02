@@ -8,17 +8,17 @@ namespace NeuralNetwork
 {
     class ExternalEnvironmentNeural : INeural
     {
-        private float _exit;
+        private double _exit;
 
-        public override float Enter { get; set; }
+        public override double Enter { get; set; }
 
-        public override float Exit
+        public override double Exit
         {
             get { return _exit; }
             set { _exit = value; }
         }
 
-        public ExternalEnvironmentNeural(float exit)
+        public ExternalEnvironmentNeural(double exit)
         {
             _exit = exit;
         }
