@@ -1,0 +1,18 @@
+H:\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.exe.config
+H:\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.exe
+H:\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.pdb
+H:\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.csprojResolveAssemblyReference.cache
+H:\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.exe
+H:\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.pdb
+D:\Study\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.exe.config
+D:\Study\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.exe
+D:\Study\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.pdb
+D:\Study\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.exe
+D:\Study\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.pdb
+D:\Study\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.csprojResolveAssemblyReference.cache
+D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.exe.config
+D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.exe
+D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.pdb
+D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.exe
+D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.pdb
+D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.csprojResolveAssemblyReference.cache
