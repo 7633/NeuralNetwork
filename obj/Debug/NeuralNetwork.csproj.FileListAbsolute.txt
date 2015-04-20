@@ -4,3 +4,6 @@ H:\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.pdb
 H:\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.csprojResolveAssemblyReference.cache
 H:\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.exe
 H:\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.pdb
+D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.csprojResolveAssemblyReference.cache
+D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.exe
+D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.exe.config
