@@ -9,6 +9,7 @@ namespace NeuralNetwork.Algorithms
 
         public BackPropagation(XorNeuralNet net)
         {
+            Console.WriteLine("Start back propagation");
             foreach (var pairTuple in net.XorPairs)
             {
                 net.LaunchNet(pairTuple.Item1, pairTuple.Item2);

@@ -14,6 +14,8 @@ namespace NeuralNetwork.Algorithms.GeneticAlgorithm
 
         public GeneticAlgorithm(XorNeuralNet net)
         {
+            Console.WriteLine("Start genetic algorithm");
+
             _initializePopulation();
 
             while (true)
