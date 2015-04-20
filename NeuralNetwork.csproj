@@ -32,30 +32,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Algorithm.cs" />
     <Compile Include="Algorithms\BackPropagation.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\Speciman.cs" />
     <Compile Include="Algorithms\GeneticAlgorithm\GeneticAlgorithm.cs" />
-    <Compile Include="XorNeuralNet\AssasinLevelNeural.cs" />
-    <Compile Include="XorNeuralNet\ExternalEnvironmentNeural.cs" />
-    <Compile Include="XorNeuralNet\INeural.cs" />
-    <Compile Include="XorNeuralNet\EntryLevelNeural.cs" />
-    <Compile Include="XorNeuralNet\XorNeuralNet.cs" />
+    <Compile Include="Algorithms\SelfOrganizingFeatureMaps.cs" />
+    <Compile Include="HelperTypes\Coord.cs" />
+    <Compile Include="NeuralNet\ClasterLevelNeural.cs" />
+    <Compile Include="HelperTypes\SerializebleCoord.cs" />
+    <Compile Include="Networks\SofmNet.cs" />
+    <Compile Include="NeuralNet\AssasinLevelNeural.cs" />
+    <Compile Include="NeuralNet\ExternalEnvironmentNeural.cs" />
+    <Compile Include="NeuralNet\INeural.cs" />
+    <Compile Include="NeuralNet\EntryLevelNeural.cs" />
+    <Compile Include="Networks\XorNeuralNet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="lat_lng.csv" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

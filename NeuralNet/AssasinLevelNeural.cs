@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NeuralNetwork.XorNeuralNet
+namespace NeuralNetwork.NeuralNet
 {
     public class AssasinLevelNeural : INeural
     {
-        private Dictionary<INeural, double> _weights = new Dictionary<INeural,double>();
         private double _enter;
         private double _exit;
+        private Dictionary<INeural, double> _weights = new Dictionary<INeural, double>();
 
         public override double Enter
         {
@@ -32,7 +32,7 @@ namespace NeuralNetwork.XorNeuralNet
 
         public double CreateNeural()
         {
-            _enter = _weights.Sum(w1 => w1.Key.Exit * w1.Value);
+            _enter = _weights.Sum(w1 => w1.Key.Exit*w1.Value);
             _exit = _exitFunction(_enter);
             return _exit;
         }

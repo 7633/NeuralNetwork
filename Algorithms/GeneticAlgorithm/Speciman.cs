@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NeuralNetwork.Networks;
 
 namespace NeuralNetwork.Algorithms.GeneticAlgorithm
 {
-    class Speciman
+    internal class Speciman
     {
         public const int Length = 9;
         public const int GenLength = 19;
@@ -15,20 +14,22 @@ namespace NeuralNetwork.Algorithms.GeneticAlgorithm
 
         private List<bool[]> _chromosome = new List<bool[]>(Length);
 
-        public List<bool[]> Chromosome
+        public Speciman()
         {
-            get { return _chromosome; }
-            set { _chromosome = value; }
         }
-
-        public Speciman() { }
 
         public Speciman(Random rand)
         {
             _makeChromosome(rand);
         }
 
-        public bool CheckFitness(XorNeuralNet.XorNeuralNet net)
+        public List<bool[]> Chromosome
+        {
+            get { return _chromosome; }
+            set { _chromosome = value; }
+        }
+
+        public bool CheckFitness(XorNeuralNet net)
         {
             net.SetWeights(GetChromosomeInDouble());
             foreach (var pairTuple in net.XorPairs)
@@ -43,7 +44,8 @@ namespace NeuralNetwork.Algorithms.GeneticAlgorithm
 
         public static Speciman Crossover(Speciman mother, Speciman father, int lokus)
         {
-            return new Speciman {
+            return new Speciman
+            {
                 Chromosome = mother.Chromosome.Take(lokus).Concat(father.Chromosome.Skip(lokus)).ToList()
             };
         }
@@ -62,7 +64,7 @@ namespace NeuralNetwork.Algorithms.GeneticAlgorithm
 
             foreach (var gen in Chromosome)
             {
-                var input = gen.Select(c => c ? 1 : 0).ToArray();
+                int[] input = gen.Select(c => c ? 1 : 0).ToArray();
                 int sign = 1;
                 // если число отрицательное, то приводим его к пригодгому типу
                 if (input[0] != 0)
@@ -84,7 +86,7 @@ namespace NeuralNetwork.Algorithms.GeneticAlgorithm
                 int num = 1;
                 for (int j = 7; j >= 0; j--)
                 {
-                    left += input[j] * num;
+                    left += input[j]*num;
                     num *= 2;
                 }
 
@@ -92,10 +94,10 @@ namespace NeuralNetwork.Algorithms.GeneticAlgorithm
                 double right = 0;
                 for (int j = 8; j < GenLength; j++)
                 {
-                    right += input[j] * den;
+                    right += input[j]*den;
                     den /= 2;
                 }
-                res.Add(sign * Double.Parse((left + right).ToString()));
+                res.Add(sign*Double.Parse((left + right).ToString()));
             }
 
             return res.ToArray();

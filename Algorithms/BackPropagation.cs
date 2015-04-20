@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NeuralNetwork.Networks;
 
 namespace NeuralNetwork.Algorithms
 {
-    class BackPropagation
+    internal class BackPropagation
     {
-        private int _iterations = 0;
-        public BackPropagation(XorNeuralNet.XorNeuralNet net)
+        private readonly int _iterations;
+
+        public BackPropagation(XorNeuralNet net)
         {
             foreach (var pairTuple in net.XorPairs)
             {
@@ -26,15 +24,15 @@ namespace NeuralNetwork.Algorithms
             Console.WriteLine("Iterations of Back propogation algortihm: " + _iterations);
         }
 
-        private void _updateWeights(XorNeuralNet.XorNeuralNet net, double real)
+        private void _updateWeights(XorNeuralNet net, double real)
         {
             // выходной слой
-            net.ExitNeural.Error = (1 - net.ExitNeural.Exit) * (real - net.ExitNeural.Exit) * net.ExitNeural.Exit;
+            net.ExitNeural.Error = (1 - net.ExitNeural.Exit)*(real - net.ExitNeural.Exit)*net.ExitNeural.Exit;
 
-            net.ExitNeural.Weights[net.AssasinNeurals[0]] += net.ExitNeural.Error * net.AssasinNeurals[0].Exit;
-            net.ExitNeural.Weights[net.AssasinNeurals[1]] += net.ExitNeural.Error * net.AssasinNeurals[1].Exit;
+            net.ExitNeural.Weights[net.AssasinNeurals[0]] += net.ExitNeural.Error*net.AssasinNeurals[0].Exit;
+            net.ExitNeural.Weights[net.AssasinNeurals[1]] += net.ExitNeural.Error*net.AssasinNeurals[1].Exit;
 
-            net.ExitNeural.Weights[net.ExternalNeurals[1]] += net.ExitNeural.Error * net.ExternalNeurals[1].Exit;
+            net.ExitNeural.Weights[net.ExternalNeurals[1]] += net.ExitNeural.Error*net.ExternalNeurals[1].Exit;
 
             // скрытый слой
             net.AssasinNeurals[0].Error = net.AssasinNeurals[0].Exit*(1 - net.AssasinNeurals[0].Exit)*
@@ -44,13 +42,15 @@ namespace NeuralNetwork.Algorithms
                                           (net.ExitNeural.Error*net.ExitNeural.Weights[net.AssasinNeurals[0]]
                                            + net.ExitNeural.Error*net.ExitNeural.Weights[net.AssasinNeurals[1]]);
 
-            net.AssasinNeurals[0].Weights[net.EntryNeurals[0]] += net.AssasinNeurals[0].Error * net.EntryNeurals[0].Exit;
-            net.AssasinNeurals[0].Weights[net.EntryNeurals[1]] += net.AssasinNeurals[0].Error * net.EntryNeurals[1].Exit;
-            net.AssasinNeurals[0].Weights[net.ExternalNeurals[0]] += net.AssasinNeurals[0].Error * net.ExternalNeurals[0].Exit;
+            net.AssasinNeurals[0].Weights[net.EntryNeurals[0]] += net.AssasinNeurals[0].Error*net.EntryNeurals[0].Exit;
+            net.AssasinNeurals[0].Weights[net.EntryNeurals[1]] += net.AssasinNeurals[0].Error*net.EntryNeurals[1].Exit;
+            net.AssasinNeurals[0].Weights[net.ExternalNeurals[0]] += net.AssasinNeurals[0].Error*
+                                                                     net.ExternalNeurals[0].Exit;
 
-            net.AssasinNeurals[1].Weights[net.EntryNeurals[0]] += net.AssasinNeurals[1].Error * net.EntryNeurals[0].Exit;
-            net.AssasinNeurals[1].Weights[net.EntryNeurals[1]] += net.AssasinNeurals[1].Error * net.EntryNeurals[1].Exit;
-            net.AssasinNeurals[1].Weights[net.ExternalNeurals[0]] += net.AssasinNeurals[1].Error * net.ExternalNeurals[0].Exit;
+            net.AssasinNeurals[1].Weights[net.EntryNeurals[0]] += net.AssasinNeurals[1].Error*net.EntryNeurals[0].Exit;
+            net.AssasinNeurals[1].Weights[net.EntryNeurals[1]] += net.AssasinNeurals[1].Error*net.EntryNeurals[1].Exit;
+            net.AssasinNeurals[1].Weights[net.ExternalNeurals[0]] += net.AssasinNeurals[1].Error*
+                                                                     net.ExternalNeurals[0].Exit;
         }
     }
 }

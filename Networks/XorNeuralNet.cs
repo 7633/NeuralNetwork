@@ -1,20 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using NeuralNetwork.NeuralNet;
 
-namespace NeuralNetwork.XorNeuralNet
+namespace NeuralNetwork.Networks
 {
     public class XorNeuralNet
     {
-        private EntryLevelNeural[] _entryNeurals = new EntryLevelNeural[2];
+        public readonly List<Tuple<double, double, double>> XorPairs = new List<Tuple<double, double, double>>
+        {
+            Tuple.Create(0.0, 0.0, 0.0),
+            Tuple.Create(1.0, 1.0, 0.0),
+            Tuple.Create(0.0, 1.0, 1.0),
+            Tuple.Create(1.0, 0.0, 1.0)
+        };
 
-        private ExternalEnvironmentNeural[] _externalNeurals = new ExternalEnvironmentNeural[2];
-
-        private AssasinLevelNeural[] _assasinNeurals = new AssasinLevelNeural[]
+        private AssasinLevelNeural[] _assasinNeurals =
         {
             new AssasinLevelNeural(), new AssasinLevelNeural()
         };
 
+        private EntryLevelNeural[] _entryNeurals = new EntryLevelNeural[2];
+
         private AssasinLevelNeural _exitNeural = new AssasinLevelNeural();
+        private double _exitValue;
+        private ExternalEnvironmentNeural[] _externalNeurals = new ExternalEnvironmentNeural[2];
+
+        public XorNeuralNet()
+        {
+            _externalNeurals[0] = new ExternalEnvironmentNeural(1);
+            _externalNeurals[1] = new ExternalEnvironmentNeural(1);
+
+            _entryNeurals[0] = new EntryLevelNeural(XorPairs[0].Item1);
+            _entryNeurals[1] = new EntryLevelNeural(XorPairs[0].Item2);
+
+            double[] startWeights = _generateWeights();
+
+            SetWeights(startWeights);
+            _exitValue = _exitNeural.Exit;
+        }
 
         public EntryLevelNeural[] EntryNeurals
         {
@@ -40,35 +63,12 @@ namespace NeuralNetwork.XorNeuralNet
             set { _exitNeural = value; }
         }
 
-        private double _exitValue;
-
         public double ExitValue
         {
             get { return _exitValue; }
         }
-        
+
         // Коллекция образцов: входной_1, входной_2, выходной
-        public readonly List<Tuple<double, double, double>> XorPairs = new List<Tuple<double, double, double>>
-            {   
-                Tuple.Create(0.0, 0.0, 0.0),
-                Tuple.Create(1.0, 1.0, 0.0),
-                Tuple.Create(0.0, 1.0, 1.0),
-                Tuple.Create(1.0, 0.0, 1.0)
-            };
-
-        public XorNeuralNet()
-        {
-            _externalNeurals[0] = new ExternalEnvironmentNeural(1);
-            _externalNeurals[1] = new ExternalEnvironmentNeural(1);
-
-            _entryNeurals[0] = new EntryLevelNeural(XorPairs[0].Item1);
-            _entryNeurals[1] = new EntryLevelNeural(XorPairs[0].Item2);
-
-            var startWeights = _generateWeights();
-
-            SetWeights(startWeights);
-            _exitValue = _exitNeural.Exit;
-        }
 
         public void SetWeights(double[] weigths)
         {
@@ -100,10 +100,10 @@ namespace NeuralNetwork.XorNeuralNet
             _exitValue = _exitNeural.Exit;
             return _exitValue;
         }
-        
+
         private double[] _generateWeights()
         {
-            Random rand = new Random((int)DateTime.Now.Ticks);
+            var rand = new Random((int) DateTime.Now.Ticks);
 
             var randomWeigths = new double[9];
 
@@ -114,7 +114,7 @@ namespace NeuralNetwork.XorNeuralNet
 
             return randomWeigths;
         }
-        
+
         public void Print()
         {
             //TODO

@@ -1,4 +1,4 @@
-﻿namespace NeuralNetwork.XorNeuralNet
+﻿namespace NeuralNetwork.NeuralNet
 {
     public abstract class INeural
     {

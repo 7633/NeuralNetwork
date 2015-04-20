@@ -1,8 +1,13 @@
-﻿namespace NeuralNetwork.XorNeuralNet
+﻿namespace NeuralNetwork.NeuralNet
 {
     public class ExternalEnvironmentNeural : INeural
     {
         private double _exit;
+
+        public ExternalEnvironmentNeural(double exit)
+        {
+            _exit = exit;
+        }
 
         public override double Enter { get; set; }
 
@@ -10,11 +15,6 @@
         {
             get { return _exit; }
             set { _exit = value; }
-        }
-
-        public ExternalEnvironmentNeural(double exit)
-        {
-            _exit = exit;
         }
     }
 }

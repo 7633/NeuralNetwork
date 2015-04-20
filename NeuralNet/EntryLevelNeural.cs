@@ -1,9 +1,14 @@
-﻿namespace NeuralNetwork.XorNeuralNet
+﻿namespace NeuralNetwork.NeuralNet
 {
     public class EntryLevelNeural : INeural
     {
         private double _enter;
         private double _exit;
+
+        public EntryLevelNeural(double enter)
+        {
+            Initialize(enter);
+        }
 
         public override double Enter
         {
@@ -23,11 +28,6 @@
         {
             _enter = enter;
             _exit = enter;
-        }
-
-        public EntryLevelNeural(double enter)
-        {
-            Initialize(enter);
         }
     }
 }

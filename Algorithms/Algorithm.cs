@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NeuralNetwork.Networks;
 
 namespace NeuralNetwork.Algorithms
 {
-    class Algorithm
+    internal class Algorithm
     {
-
         // TODO допилить вызовы алгоритмов, время работы
-        private DateTime time;
-        private XorNeuralNet.XorNeuralNet _net;
-
-        public GeneticAlgorithm.GeneticAlgorithm GeneticAlgorithm;
         public BackPropagation BackPropagation;
+        public GeneticAlgorithm.GeneticAlgorithm GeneticAlgorithm;
+        private XorNeuralNet _net;
+        private DateTime time;
 
-        public Algorithm(XorNeuralNet.XorNeuralNet net)
+        public Algorithm(XorNeuralNet net)
         {
             _net = net;
         }
