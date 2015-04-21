@@ -33,7 +33,7 @@ namespace NeuralNetwork
                 {
                     string[] line = file.ReadLine().Split(',');
                     var coord = new Coord(Double.Parse(line[0], CultureInfo.InvariantCulture),
-                        Double.Parse(line[1], CultureInfo.InvariantCulture), 0);
+                        Double.Parse(line[1], CultureInfo.InvariantCulture), -1);
                     fromFile.Add(coord);
                 }
             }
@@ -44,10 +44,10 @@ namespace NeuralNetwork
             for (int i = 0; i < 10; i++)
             {
                 Console.WriteLine("Claster\t{0} have\t{1}\tcoordinates", i + 1,
-                    sofm.CoordClast.Select(c => c).Where(c => c.Claster == i).ToList().Count);
+                    sofm.CoordClast.Distinct().ToList().Select(c => c).Where(c => c.Claster == i).ToList().Count);
             }
 
-            List<SerializebleCoord> serializebleData = sofm.CoordClast.ConvertAll(input => new SerializebleCoord(input));
+            List<SerializebleCoord> serializebleData = sofm.CoordClast.Distinct().ToList().ConvertAll(input => new SerializebleCoord(input));
 
             string jsonString = JsonConvert.SerializeObject(serializebleData);
 

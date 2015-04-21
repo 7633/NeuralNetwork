@@ -2,13 +2,14 @@
 {
     public class Coord
     {
-        public int Claster = 0;
-        public double[] Loc = {0.0, 0.0};
+        public int Claster = -1;
+        public double Latitude = 0.0;
+        public double Longitude = 0.0;
 
-        public Coord(double loc1, double loc2, int claster)
+        public Coord(double lat, double @long, int claster)
         {
-            Loc[0] = loc1;
-            Loc[1] = loc2;
+            Latitude = lat;
+            Longitude = @long;
             Claster = claster;
         }
     }

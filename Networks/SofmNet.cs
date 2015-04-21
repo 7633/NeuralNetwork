@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NeuralNetwork.NeuralNet;
 
 namespace NeuralNetwork.Networks
@@ -8,9 +9,10 @@ namespace NeuralNetwork.Networks
         private const int ClasterCount = 10;
         private int _bmuIdx;
 
-        private EntryLevelNeural[] _entryNeurals = new EntryLevelNeural[2];
+        private EntryLevelNeural _latitudaNeural = new EntryLevelNeural(0.0);
+        private EntryLevelNeural _longitudeNeural = new EntryLevelNeural(0.0);
 
-        private ClasterLevelNeural[] _exitNeurals = new ClasterLevelNeural[ClasterCount]
+        private ClasterLevelNeural[] _exitNeurals =
         {
             new ClasterLevelNeural(), new ClasterLevelNeural(), new ClasterLevelNeural(), new ClasterLevelNeural(),
             new ClasterLevelNeural(),
@@ -18,21 +20,21 @@ namespace NeuralNetwork.Networks
             new ClasterLevelNeural()
         };
 
-        public SofmNet()
-        {
-            _entryNeurals[0] = new EntryLevelNeural(0.0);
-            _entryNeurals[1] = new EntryLevelNeural(0.0);
-        }
-
         public int BmuIdx
         {
             get { return _bmuIdx; }
         }
 
-        public EntryLevelNeural[] EntryNeurals
+        public EntryLevelNeural LatitudaNeural
         {
-            get { return _entryNeurals; }
-            set { _entryNeurals = value; }
+            get { return _latitudaNeural; }
+            set { _latitudaNeural = value; }
+        }
+
+        public EntryLevelNeural LongitudeNeural
+        {
+            get { return _longitudeNeural; }
+            set { _longitudeNeural = value; }
         }
 
         public ClasterLevelNeural[] ExitNeurals
@@ -41,21 +43,28 @@ namespace NeuralNetwork.Networks
             set { _exitNeurals = value; }
         }
 
-        public void SetWeights(double[] weights1, double[] weights2)
+        public void SetWeights(double[] latWeights, double[] longWeights)
         {
-            _exitNeurals[0].Weights.Clear();
+            //TODO что это за бубуйня? как устанавливаются веса для сети?
+            //хочешь сказать, что для всех кластеров обновляются его веса
+            foreach (var neural in _exitNeurals)
+            {
+                neural.Weights.Clear();
+            }
+
+            //затем для каждого кластера добавляется вес для широ-ты и долго-ты
             int iw = 0;
             foreach (ClasterLevelNeural neural in _exitNeurals)
             {
-                neural.Weights.Add(_entryNeurals[0], weights1[iw]);
-                neural.Weights.Add(_entryNeurals[1], weights2[iw++]);
+                neural.Weights.Add(_latitudaNeural, latWeights[iw]);
+                neural.Weights.Add(_longitudeNeural, longWeights[iw++]);
             }
         }
 
-        public void LaunchNet(double enter1, double enter2)
+        public void LaunchNet(double lat, double @long)
         {
-            _entryNeurals[0].Initialize(enter1);
-            _entryNeurals[1].Initialize(enter2);
+            _latitudaNeural.Initialize(lat);
+            _longitudeNeural.Initialize(@long);
 
             foreach (ClasterLevelNeural clasterLevelNeural in _exitNeurals)
             {
@@ -75,7 +84,7 @@ namespace NeuralNetwork.Networks
                 min = _exitNeurals[i].Exit;
                 idx = i;
             }
-
+            
             return idx;
         }
     }

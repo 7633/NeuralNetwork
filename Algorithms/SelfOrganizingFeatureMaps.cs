@@ -9,7 +9,7 @@ namespace NeuralNetwork.Algorithms
 {
     public class SelfOrganizingFeatureMaps
     {
-        private const double Epsilon = 0.0001;
+        private const double Epsilon = 0.001;
         private const int ClasterCount = 10;
 
         private readonly List<Coord> _coordClast = new List<Coord>();
@@ -18,41 +18,41 @@ namespace NeuralNetwork.Algorithms
 
         public SelfOrganizingFeatureMaps(SofmNet net, List<Coord> coordinates)
         {
-            double delta = _etta/coordinates.Count;
+            const double delta = 0.00001;
 
+            _coordClast = new List<Coord>();
+            _coordClast.AddRange(coordinates);
             var rand = new Random((int) DateTime.Now.Ticks);
 
             net.SetWeights(
-                _generateWeights(rand, coordinates.Select(w => w.Loc[0]).Min(), coordinates.Select(w => w.Loc[0]).Max()),
-                _generateWeights(rand, coordinates.Select(w => w.Loc[1]).Min(), coordinates.Select(w => w.Loc[1]).Max()));
+                _generateWeights(rand, coordinates.Select(w => w.Latitude).Min(), coordinates.Select(w => w.Latitude).Max()),
+                _generateWeights(rand, coordinates.Select(w => w.Longitude).Min(), coordinates.Select(w => w.Longitude).Max()));
 
-            while (_etta > Epsilon)
+            for (int i = 0; i < 100000; i++)
             {
-                int coordIdx = rand.Next(0, coordinates.Count);
-                Coord latLon = coordinates[coordIdx];
+                int coordIdx = rand.Next(0, _coordClast.Count);
 
-                net.LaunchNet(latLon.Loc[0], latLon.Loc[1]);
+                net.LaunchNet(_coordClast[coordIdx].Latitude, _coordClast[coordIdx].Longitude);
 
                 _updateWeight(net, net.BmuIdx);
 
-                _etta -= delta;
-                latLon.Claster = net.BmuIdx;
-                _coordClast.Add(latLon);
-                coordinates.Remove(latLon);
+                if (_etta > Epsilon)
+                {
+                    _etta -= delta;
+                }
+                _coordClast[coordIdx].Claster = net.BmuIdx;
             }
         }
 
         public List<Coord> CoordClast
         {
-            get { return _coordClast; }
+            get { return _coordClast.Distinct().ToList(); }
         }
 
         private void _updateWeight(SofmNet net, int bestIdx)
         {
-            ClasterLevelNeural claster = net.ExitNeurals[bestIdx];
-
-            claster.Weights[net.EntryNeurals[0]] += _etta*net.EntryNeurals[0].Exit;
-            claster.Weights[net.EntryNeurals[1]] += _etta*net.EntryNeurals[1].Exit;
+            net.ExitNeurals[bestIdx].Weights[net.LatitudaNeural] += _etta * (net.LatitudaNeural.Exit - net.ExitNeurals[bestIdx].Weights[net.LatitudaNeural]);
+            net.ExitNeurals[bestIdx].Weights[net.LongitudeNeural] += _etta * (net.LongitudeNeural.Exit - net.ExitNeurals[bestIdx].Weights[net.LongitudeNeural]);
         }
 
         private double[] _generateWeights(Random rand, double min, double max)

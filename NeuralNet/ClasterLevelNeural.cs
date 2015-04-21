@@ -26,13 +26,19 @@ namespace NeuralNetwork.NeuralNet
 
         public double CreateNeural()
         {
-            var phi = new INeural[2];
-            _weights.Keys.CopyTo(phi, 0);
+            var tempK = new INeural[2];
+            _weights.Keys.CopyTo(tempK, 0);
 
-            var lyambda = new double[2];
-            _weights.Values.CopyTo(lyambda, 0);
+            var phi1 = tempK[0].Exit; // широта входная
+            var lyambda1 = tempK[1].Exit; // долгота входная
 
-            _exit = _exitFunction(phi[0].Exit, phi[1].Exit, Math.Abs(lyambda[0] - lyambda[1]));
+            var tempV= new double[2];
+            _weights.Values.CopyTo(tempV, 0);
+
+            var phi2 = tempV[0]; // широта посчитанная
+            var lyambda2 = tempV[1]; // долгота посчитанная
+
+            _exit = _exitFunction(phi1 * Math.PI / 180, phi2 * Math.PI / 180, Math.Abs(lyambda1 * Math.PI / 180 - lyambda2 * Math.PI / 180));
             return _exit;
         }
 
