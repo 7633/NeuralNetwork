@@ -28,7 +28,7 @@ namespace NeuralNetwork.Algorithms
                 _generateWeights(rand, coordinates.Select(w => w.Latitude).Min(), coordinates.Select(w => w.Latitude).Max()),
                 _generateWeights(rand, coordinates.Select(w => w.Longitude).Min(), coordinates.Select(w => w.Longitude).Max()));
 
-            for (int i = 0; i < 100000; i++)
+            for (int i = 0; i < 20000000; i++)
             {
                 int coordIdx = rand.Next(0, _coordClast.Count);
 
@@ -46,7 +46,7 @@ namespace NeuralNetwork.Algorithms
 
         public List<Coord> CoordClast
         {
-            get { return _coordClast.Distinct().ToList(); }
+            get { return _coordClast; }
         }
 
         private void _updateWeight(SofmNet net, int bestIdx)

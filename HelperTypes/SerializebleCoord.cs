@@ -2,8 +2,8 @@
 {
     internal class SerializebleCoord
     {
-        private string image_clster = "";
-        private double[] loc = {0.0, 0.0};
+        public string image_clster;
+        public double[] loc = {0.0, 0.0};
 
         public SerializebleCoord(Coord c)
         {

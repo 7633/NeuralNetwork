@@ -9,6 +9,6 @@ D:\Study\Семестр 8\Системы искусственного интел
 D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\bin\Debug\NeuralNetwork.pdb
 D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\bin\Debug\Newtonsoft.Json.dll
 D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\bin\Debug\Newtonsoft.Json.xml
-D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.csprojResolveAssemblyReference.cache
 D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.exe
 D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.pdb
+D:\Study\Семестр 8\Системы искусственного интеллекта\NeuralNetwork\NeuralNetwork\obj\Debug\NeuralNetwork.csprojResolveAssemblyReference.cache
